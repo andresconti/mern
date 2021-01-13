@@ -1,4 +1,3 @@
-import { json } from 'express';
 import React, { Component } from 'react';
 
 class App extends Component {
@@ -26,27 +25,10 @@ class App extends Component {
             }
         })
         
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            M.toast({html: 'Tarea Guardada'});
-            this.setState({title: '', description: ''});
-        })
+        .then(res => console.log(res))
         .catch(err => console.log(err));
 
         event.preventDefault();
-    }
-
-    componentDidMount(){
-        this.getTasks();
-    }
-    
-
-    getTasks(){
-        fetch('/api/tasks')
-
-        .then(res => res.json())
-        .then(data => console.log(data));
     }
 
     handleChange(event){
@@ -74,13 +56,13 @@ class App extends Component {
                                     <form onSubmit={this.addTask}>
                                         <div className="row">
                                             <div className="input field col s12">
-                                                <input name="title" onChange={this.handleChange} type="text" placeholder="Task title" value={this.state.title}/>
+                                                <input name="title" onChange={this.handleChange} type="text" placeholder="Task title" />
                                             </div>
                                         </div>
 
                                         <div className="row">
                                             <div className="input field col s12">
-                                                <textarea name="description" onChange={this.handleChange} placeholder="Task description" className="materialize-textarea" value={this.state.description}></textarea>
+                                                <textarea name="description" onChange={this.handleChange} placeholder="Task description" className="materialize-textarea"></textarea>
                                             </div>
                                         </div>
 
